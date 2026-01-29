@@ -1,10 +1,10 @@
 "use client";
 
 import { type FormEvent, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
-import { supabase } from "@/lib/supabaseBrowser";
-
-type Role = "player" | "organizer" | "admin";
+import { supabase } from "@/lib/supabase/client";
+import type { Role } from "@/lib/types/user";
 type AuthMode = "login" | "register";
 
 type AuthForm = {
@@ -21,6 +21,7 @@ type AuthState = {
 };
 
 export default function AuthPage() {
+  const router = useRouter();
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [authRole, setAuthRole] = useState<Role | null>(null);
   const [authProfileName, setAuthProfileName] = useState<{
@@ -94,6 +95,12 @@ export default function AuthPage() {
       authListener.subscription.unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    if (authUser) {
+      router.push("/dashboard");
+    }
+  }, [authUser, router]);
 
   const handleAuthSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

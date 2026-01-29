@@ -31,7 +31,12 @@ export const useTournamentParticipants = (
       return;
     }
 
-    setParticipants((data as TournamentParticipant[]) ?? []);
+    const normalized = (data ?? []).map((row: any) => ({
+      ...row,
+      user: Array.isArray(row.user) ? row.user[0] : row.user,
+    })) as TournamentParticipant[];
+
+    setParticipants(normalized);
     setError(null);
     setLoading(false);
   };

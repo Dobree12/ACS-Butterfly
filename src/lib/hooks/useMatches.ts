@@ -37,7 +37,16 @@ export const useMatches = ({ userId, limit }: Options = {}) => {
       return;
     }
 
-    setMatches((data as Match[]) ?? []);
+    const normalized = (data ?? []).map((row: any) => ({
+      ...row,
+      player1: Array.isArray(row.player1) ? row.player1[0] : row.player1,
+      player2: Array.isArray(row.player2) ? row.player2[0] : row.player2,
+      tournament: Array.isArray(row.tournament)
+        ? row.tournament[0]
+        : row.tournament,
+    })) as Match[];
+
+    setMatches(normalized);
     setError(null);
     setLoading(false);
   };

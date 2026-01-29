@@ -5,6 +5,10 @@ body
             box-sizing: border-box;
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         :root {
             --primary: #FF3B30;
             --primary-dark: #D32F2F;
@@ -76,6 +80,7 @@ body
             justify-content: space-between;
             align-items: center;
             height: 70px;
+            position: relative;
         }
 
         .logo {
@@ -126,6 +131,27 @@ body
             width: 100%;
             height: 2px;
             background: var(--gradient);
+        }
+
+        .nav-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            border-radius: 8px;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 999px;
         }
 
         /* Hero Section */
@@ -799,6 +825,7 @@ body
             color: var(--text);
             font-size: 15px;
             transition: border-color 0.3s;
+            max-width: 100%;
         }
 
         .form-input:focus {
@@ -937,6 +964,34 @@ body
                 display: none;
             }
 
+            .nav-toggle {
+                display: inline-flex;
+            }
+
+            .nav-links.open {
+                display: flex;
+                position: absolute;
+                top: 70px;
+                left: 20px;
+                right: 20px;
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+                background: rgba(26, 26, 26, 0.98);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                z-index: 1001;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            }
+
+            .nav-container {
+                height: 60px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
             .rankings-grid {
                 grid-template-columns: 1fr;
             }
@@ -944,6 +999,105 @@ body
             .match-item {
                 flex-direction: column;
                 gap: 15px;
+            }
+
+            .hero {
+                height: 50vh;
+            }
+
+            .hero .subtitle {
+                font-size: 16px;
+            }
+
+            .cta-button,
+            .save-btn,
+            .edit-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card,
+            .form-input,
+            .cta-button,
+            .save-btn,
+            .edit-btn {
+                max-width: 100%;
+            }
+
+            .tournament-header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .tournament-actions {
+                gap: 10px;
+            }
+
+            .tournament-admin {
+                grid-template-columns: 1fr;
+            }
+
+            .leaderboard-item {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .player-info {
+                min-width: 0;
+            }
+
+            .profile-list > div {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 14px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .card-title {
+                font-size: 16px;
+            }
+
+            .main-content {
+                padding: 40px 0;
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .profile-card {
+                padding: 20px;
+            }
+
+            .tournament-status {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+
+            .form-input {
+                font-size: 14px;
             }
         }
 
